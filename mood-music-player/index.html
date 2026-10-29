@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mood Music Player</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="wrap">
+  <h1>🎧 Mood Music Player</h1>
+  <p class="sub">Tell it how you feel. It plays music that fits. No camera needed.</p>
+
+  <section class="card" id="auth">
+    <div id="loggedOut">
+      <label class="small" for="clientId">Spotify Client ID</label>
+      <input id="clientId" placeholder="Paste your Client ID from developer.spotify.com">
+      <p class="small">Add this Redirect URI in your Spotify app settings: <code id="redir"></code></p>
+      <button class="primary" id="connect">Connect Spotify</button>
+    </div>
+    <div id="loggedIn" hidden>
+      <span>✅ Spotify connected</span>
+      <button class="ghost" id="logout">Disconnect</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>How do you feel?</h2>
+    <div class="grid" id="moods"></div>
+    <div class="row">
+      <input id="feelText" placeholder="Or describe it: &quot;tired after exams but happy it's over&quot;">
+      <button class="primary" id="detect">Detect</button>
+    </div>
+    <div class="row opts">
+      <label>Energy
+        <select id="energy"><option value="any">Any</option><option value="low">Low</option><option value="high">High</option></select>
+      </label>
+      <label>Language
+        <select id="lang"><option value="any">Any</option><option value="hindi">Hindi</option><option value="english">English</option><option value="punjabi">Punjabi</option></select>
+      </label>
+    </div>
+    <div id="status" role="status"></div>
+    <button class="primary" id="another" hidden>🔀 Another playlist</button>
+  </section>
+
+  <section class="card" id="nowCard" hidden>
+    <div class="now">
+      <img id="art" alt="" width="64" height="64">
+      <div class="meta"><div id="track">—</div><div class="small" id="artist"></div></div>
+    </div>
+    <div class="controls">
+      <button class="ghost" id="prev" aria-label="Previous">⏮</button>
+      <button class="primary" id="toggle" aria-label="Play or pause">⏯</button>
+      <button class="ghost" id="next" aria-label="Next">⏭</button>
+      <input type="range" id="vol" min="0" max="100" value="70" aria-label="Volume">
+    </div>
+  </section>
+
+  <div id="embed"></div>
+
+  <section class="card">
+    <h2>Your mood history</h2>
+    <div id="stats" class="small"></div>
+    <ul id="history"></ul>
+    <button class="ghost" id="clearHist">Clear history</button>
+  </section>
+
+  <p class="small foot">Spotify Premium is needed for in-browser playback. Without it, an embedded player is shown instead.</p>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>
